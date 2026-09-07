@@ -1,0 +1,7 @@
+# IDE & OS Artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini
