@@ -2,11 +2,12 @@
 > **Enterprise Logistics Intelligence & Automation Platform**  
 > Architectural blueprint, security guardrails, data masking protocols, and systems design specifications.
 
+[![Standard](https://img.shields.io/badge/Standard-IEEE%201016-purple.svg)]()
+[![Scope](https://img.shields.io/badge/Scope-Architecture%20%26%20Design%20Specs-blue.svg)]()
 [![Architecture](https://img.shields.io/badge/Architecture-Modular%20Monolith-blue.svg)]()
+[![AI Governance](https://img.shields.io/badge/AI%20Governance-Zero--Leak%20Protocol-green.svg)]()
 [![Security](https://img.shields.io/badge/Security-Deterministic%20Data%20Masking-green.svg)]()
 [![Engine](https://img.shields.io/badge/Engine-SQLite%20WAL%20%2B%20mode%3Dro-orange.svg)]()
-[![Verification](https://img.shields.io/badge/Verification-37%20Tests%20(100%25%20Pass%20Rate)-brightgreen.svg)]()
-[![Scope](https://img.shields.io/badge/Scope-Architecture%20%26%20Design%20Specs-purple.svg)]()
 
 ---
 
@@ -140,6 +141,8 @@ graph TD
 
 ## Verification & Testing Contract
 
+> **Verification Specification**: The contract below defines the test suite topology implemented in the private repository to validate financial formulas, AST guardrails, and data masking pipelines.
+
 The platform architecture enforces a strict verification contract covering 37 unit and integration tests (100% pass rate):
 
 ### Test Suite Breakdown:
@@ -167,6 +170,6 @@ The platform architecture enforces a strict verification contract covering 37 un
 
 ## Technical Documentation
 
-- [System Architecture Specification](architecture.md)
+- [System Architecture Specification](ARCHITECTURE.md)
 - [AI Governance, Security & Zero-Leak Protocol](AI_SECURITY_AND_GOVERNANCE.md)
-- [Project Technical Datasheet](project_overview.md)
+- [Project Technical Datasheet](PROJECT_OVERVIEW.md)
