@@ -156,10 +156,10 @@ The platform architecture enforces a strict verification contract covering 37 un
 
 ## Runtime Topology & Deployment Specifications
 
-### 1. Containerized Process Model (`docker-compose.yml`)
+### 1. Process Execution Model
 - **Service Boundary**: Decoupled async Telegram bot and background Playwright browser automation worker.
-- **Resource Limits (cgroups)**: Enforces strict container memory bounds (`limits.memory: 1536M`, `reservations.memory: 512M`) to prevent Chromium subprocesses from exhausting host RAM.
-- **Target Image**: Minimal `python:3.12-slim` base with precompiled Playwright Chromium headless binaries.
+- **Subprocess Isolation**: Background Chromium subprocess execution prevents browser memory spikes from impacting the primary `aiogram` event loop.
+- **Runtime Environment**: Python 3.12 virtual environment (`venv`) with direct execution on Windows host.
 
 ### 2. Analytical Database Engine
 - **Storage Engine**: SQLite 3 with Write-Ahead Logging (`PRAGMA journal_mode = WAL;`) activated during atomic ETL builds.

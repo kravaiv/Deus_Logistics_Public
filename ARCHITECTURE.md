@@ -172,17 +172,21 @@ To ensure portable local development without transferring multi-gigabyte files a
 
 ---
 
-## 5. Containerization Topology (Docker)
+## 5. Runtime Execution Topology
 
 ```text
-Host Environment
- └── docker-compose.yml
-      └── Service: bot
-           ├── Base Image: python:3.12-slim
-           ├── Dependencies: requirements.txt + Playwright Chromium
-           ├── Mounted Volumes:
-           │    ├── ./data   -> /app/data    (Database & Caches)
-           │    └── ./config -> /app/config  (Configuration)
-           ├── Environment: .env (TELEGRAM_BOT_TOKEN, GEMINI_API_KEY)
-           └── Entrypoint: python logistic_bot.py
+Host Environment (Windows / Windows Server)
+ └── Python 3.12 Virtual Environment (`venv`)
+      └── Service: Telegram Bot (`logistic_bot.py`)
+           ├── Core Engine: aiogram 3 Event Loop
+           ├── Subprocess Worker: Playwright Chromium (LinkedIn Outreach)
+           ├── Local Storage (Direct I/O):
+           │    ├── data/database/logistics.db (SQLite WAL)
+           │    ├── trade_data_2026.db (32.8 GB Customs Dataset)
+           │    └── data/cache/ (NBU Currency Cache)
+           ├── Configuration: config/config.json & .env
+           └── External Cloud Integrations:
+                ├── Google Sheets API (ETL Ingestion)
+                ├── Google Gemini API (Text-to-SQL Analytics)
+                └── Telegram Bot API
 ```

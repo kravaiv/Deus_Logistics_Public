@@ -1,7 +1,7 @@
 # Project Datasheet: Deus Logistics
 **Version**: 2.1.0-clean  
 **Architecture Style**: Modular Monolith Architecture (Clean Layers)  
-**Target Environment**: Docker Linux / Windows Server  
+**Target Environment**: Windows Server / Windows 10/11 (Python 3.12)  
 
 Deus Logistics is an **enterprise-grade logistics intelligence, foreign trade analytics, and automated lead generation platform** combining a Telegram operations interface with local deterministic data processing and secure cloud LLM integration.
 
@@ -64,9 +64,7 @@ deus_logistics/
 │   └── .env.example             # Token & API credentials template
 │
 ├── build_logistic_center.py     # Safe Atomic ETL Pipeline (Google Sheets / Excel -> SQLite)
-├── logistic_bot.py              # Lightweight Entrypoint Facade (30 lines)
-├── Dockerfile                   # Production Container Specification
-└── docker-compose.yml           # Orchestration Spec with Volume Mounts
+└── logistic_bot.py              # Lightweight Entrypoint Facade (30 lines)
 ```
 
 ---
@@ -91,5 +89,5 @@ deus_logistics/
    - *Decision*: Paired cloud Google Gemini API with deterministic session-scoped data masking (salt scaling on tabular aggregates and token mapping on entities) rather than hosting heavy 70B parameter models on local GPUs.
    - *Rationale*: Eliminates requirement for expensive GPU hardware while guaranteeing that sensitive financial margins and counterparty identities never leave the local environment.
 3. **Decoupled Playwright Worker vs. In-Process Scraping**:
-   - *Decision*: Isolated LinkedIn browser automation into an asynchronous background subprocess with container memory limits (`1.5G` limit in Docker Compose).
-   - *Rationale*: Prevents Chromium memory consumption from exhausting host resources or impacting the Telegram bot's async event loop. Target roadmap specifies full extraction into an independent headless queue worker.
+   - *Decision*: Isolated LinkedIn browser automation into an asynchronous background subprocess decoupled from the main event loop.
+   - *Rationale*: Prevents Chromium memory consumption from blocking or impacting the Telegram bot's async event loop, enabling dedicated process lifecycle control.
